@@ -1,5 +1,6 @@
-use num_traits::{cast, Zero, Signed, PrimInt};
+#![no_std]
 
+use num_traits::{cast, Zero, Signed, PrimInt};
 
 pub trait SignedNumToAscii<const N: usize> {}
 
