@@ -1,8 +1,9 @@
-use num::{cast, Zero, Integer, Signed, traits::{PrimInt}};
+use num_traits::{cast, Zero, Signed, PrimInt};
+
 
 pub trait SignedNumToAscii<const N: usize> {}
 
-fn inner_to_ascii<T: cast::AsPrimitive<u8> + Integer + PrimInt>(n: T, buff: &mut [u8] ) -> usize {
+fn inner_to_ascii<T: cast::AsPrimitive<u8> + PrimInt>(n: T, buff: &mut [u8] ) -> usize {
     let ten: T = T::from(10u8).unwrap();
 
     let mut v = n;
@@ -21,7 +22,7 @@ fn inner_to_ascii<T: cast::AsPrimitive<u8> + Integer + PrimInt>(n: T, buff: &mut
 
 pub trait NumToAscii<const N: usize>:
     cast::AsPrimitive<u8>
-    + Integer + PrimInt
+    + PrimInt
     
 {
     fn to_ascii(&self) -> [u8; N] {
@@ -36,7 +37,6 @@ where T:
 Signed
 + SignedNumToAscii<N>
 + cast::AsPrimitive<u8>
-+ Integer
 + PrimInt
 {
     fn to_ascii(&self) -> [u8; N] {
